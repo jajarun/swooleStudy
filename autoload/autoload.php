@@ -7,7 +7,17 @@
  */
 
 function autoloadNamespaceClass($name){
-    echo $name;
+    $classPaths = explode('/',$name);
+    $className = array_pop($classPaths);
+    $classPath = ROOT_PATH;
+    foreach ($classPaths as $path){
+        $classPath .= '/'.strtolower($path);
+    }
+    $classPath .= '/'.$className.'.php';
+    if(!file_exists($classPath)){
+        throw new Exception("$classPath not exist");
+    }
+    require $classPath;
 }
 
 spl_autoload_register('autoloadNamespaceClass');
