@@ -37,7 +37,7 @@ class DbPool{
         $this->server->on('onTask',[$this,'onTask']);
         $this->server->on('onFinish',[$this,'onFinish']);
 
-        $this->server->stats();
+        $this->server->start();
     }
 
     private function onStart($server){
