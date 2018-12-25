@@ -7,7 +7,6 @@
  */
 
 use Core\DbPool;
-
+require '../config/config.php';
 require '../autoload/autoload.php';
-$config = include('../config/config.php');
-new DbPool($config['db']);
+new DbPool($dbConfig);
