@@ -31,24 +31,24 @@ class DbPool{
             'worker_num' => $this->workerNum,
             'task_worker_num' => $this->taskNum
         ]);
-        $this->server->on('onStart',[$this,'onStart']);
-        $this->server->on('onWorkerStart',[$this,'onWorkerStart']);
-        $this->server->on('onReceive',[$this,'onReceive']);
-        $this->server->on('onTask',[$this,'onTask']);
-        $this->server->on('onFinish',[$this,'onFinish']);
+        $this->server->on('Start',[$this,'onStart']);
+        $this->server->on('WorkerStart',[$this,'onWorkerStart']);
+        $this->server->on('Receive',[$this,'onReceive']);
+        $this->server->on('Task',[$this,'onTask']);
+        $this->server->on('Finish',[$this,'onFinish']);
 
         $this->server->start();
     }
 
-    private function onStart($server){
+    public function onStart($server){
         Log::debug('DbPool start...');
     }
 
-    private function onWorkerStart($server,$workerId){
+    public function onWorkerStart($server,$workerId){
         Log::debug('worker '.$workerId.' start...');
     }
 
-    private function onReceive(SwooleServer $server,$fd,$fromId,$data){
+    public function onReceive(SwooleServer $server,$fd,$fromId,$data){
         Log::debug('Receive data:'.$data);
         $result = $server->taskwait($data);
         Log::debug('sql query over');
@@ -60,7 +60,7 @@ class DbPool{
         }
     }
 
-    private function onTask(SwooleServer $server,$taskId,$fromId,$data){
+    public function onTask(SwooleServer $server,$taskId,$fromId,$data){
         if($this->connect == null){
             $this->connect = mysqli_connect($this->dbConfig['host'],$this->dbConfig['username'],$this->dbConfig['password'],$this->dbConfig['db_name'],$this->dbConfig['port']);
             if(!$this->connect){
@@ -78,7 +78,7 @@ class DbPool{
         $server->finish('OK:'.serialize($data));
     }
 
-    private function onFinish(SwooleServer $server,$taskId,$data){
+    public function onFinish(SwooleServer $server,$taskId,$data){
         Log::debug('Task over data:'.$data);
     }
 
