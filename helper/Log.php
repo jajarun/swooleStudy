@@ -11,7 +11,10 @@ namespace Helper;
 
 class Log
 {
-    public static function debug($msg){
 
+    private $filePath = '/tmp/debug.log';
+
+    public static function debug($msg){
+        echo $msg.PHP_EOL;
     }
 }

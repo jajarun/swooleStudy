@@ -11,6 +11,7 @@ return [
         'username' => 'root',
         'password' => '123456',
         'db_name'   => 'jaja',
+        'port' => 3306,
         'charset'  => 'utf8',
     ]
 ];
