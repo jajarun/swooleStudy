@@ -8,5 +8,6 @@
 
 use Core\DbPool;
 
+require '../autoload/autoload.php';
 $config = include('../config/config.php');
 new DbPool($config['db']);
