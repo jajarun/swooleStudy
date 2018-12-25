@@ -6,7 +6,8 @@
  * Time: 下午1:42
  */
 
-use Core\DbPool;
 require '../config/config.php';
 require '../autoload/autoload.php';
-new DbPool($dbConfig);
+
+
+new \Core\DbPool($dbConfig);

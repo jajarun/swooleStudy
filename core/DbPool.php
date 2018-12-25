@@ -17,9 +17,9 @@ class DbPool{
 
     private $server = null;
 
-    private $workerNum = 1;
+    private $workerNum = 2;
 
-    private $taskNum = 2;
+    private $taskNum = 4;
 
     private $connect = null;
 
