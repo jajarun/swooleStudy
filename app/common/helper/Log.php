@@ -6,7 +6,7 @@
  * Time: 下午2:28
  */
 
-namespace Helper;
+namespace Common\Helper;
 
 
 class Log

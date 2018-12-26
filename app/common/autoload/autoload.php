@@ -9,7 +9,7 @@
 function autoloadNamespaceClass($name){
     $classPaths = explode('\\',$name);
     $className = array_pop($classPaths);
-    $classPath = ROOT_PATH;
+    $classPath = APP_PATH;
     foreach ($classPaths as $path){
         $classPath .= '/'.strtolower($path);
     }

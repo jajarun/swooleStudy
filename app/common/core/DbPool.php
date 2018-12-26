@@ -6,9 +6,9 @@
  * Time: 下午2:29
  */
 
-namespace Core;
+namespace Common\Core;
 use Swoole\Server as SwooleServer;
-use Helper\Log;
+use Common\Helper\Log;
 
 
 class DbPool{
@@ -51,10 +51,11 @@ class DbPool{
     public function onReceive(SwooleServer $server,$fd,$fromId,$data){
         Log::debug('Receive data:'.$data);
         $result = $server->taskwait($data);
+        Log::debug('Query result:'.$result);
         Log::debug('sql query over');
         if($result !== false){
 //            list($status,$res) = explode(':',$data,2);
-            $server->send($fd,$data);
+            $server->send($fd,$result);
         }else{
             $server->send($fd,'Task error');
         }
@@ -74,7 +75,11 @@ class DbPool{
             $server->finish('ER:'.mysqli_error($this->connect));
             return;
         }
-        $data = $result->fetch_all(MYSQLI_ASSOC);
+        if(preg_match("/^select/i", $data)){
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+        }else{
+            $data = $result;
+        }
         $server->finish('OK:'.serialize($data));
     }
 
