@@ -7,9 +7,10 @@
  */
 
 namespace Modules\Cli\Tasks;
+use Common\library\TaskBase;
 use Swoole\Client as SwooleClient;
 
-class ClientTask
+class ClientTask extends TaskBase
 {
 
     public function runAction(){

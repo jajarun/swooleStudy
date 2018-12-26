@@ -7,9 +7,9 @@
  */
 
 namespace Modules\Web\Controllers;
+use Common\library\ControllerBase;
 
-
-class IndexController
+class IndexController extends ControllerBase
 {
 
 }

@@ -7,9 +7,9 @@
  */
 
 namespace Modules\Cli\Tasks;
+use Common\library\TaskBase;
 
-
-class DbpoolTask
+class DbpoolTask extends TaskBase
 {
 
 }
