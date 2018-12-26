@@ -7,9 +7,14 @@
  */
 
 namespace Modules\Cli\Tasks;
+use Common\Core\DbPool;
 use Common\library\TaskBase;
 
 class DbpoolTask extends TaskBase
 {
+
+    public function runAction(){
+        new DbPool();
+    }
 
 }
