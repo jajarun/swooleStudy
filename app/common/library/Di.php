@@ -30,6 +30,7 @@ class Di
     public function __get($name)
     {
         // TODO: Implement __get() method.
+        return $this->get($name);
     }
 
     public function set($name,$value){
